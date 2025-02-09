@@ -9,8 +9,13 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 export default function DemoWrapper() {
   const { createSnack } = useSnack();
 
-  const onClickHandler = (day: number, month: number, year: number) => {
-    const snackMessage = `Clicked on ${monthNames[month]} ${day}, ${year}`
+  const onClickHandler = (day: number, month: number, year: number, iso: boolean) => {
+    let snackMessage = '';
+    if (!iso) {
+      snackMessage = `Clicked on ${monthNames[month]} ${day}, ${year}`
+    } else {
+      snackMessage = `Clicked on ${day}/${month + 1}/${year}`
+    }
     createSnack(snackMessage, 'success');
   }
 
